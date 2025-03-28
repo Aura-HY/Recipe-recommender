@@ -1,0 +1,166 @@
+syntax = "proto3";
+
+package user;
+option go_package = "api/user/v1;user";
+
+import "google/api/annotations.proto";
+
+service UserService {
+  // 用户注册
+  rpc RegisterUser (RegisterRequest) returns (RegisterResponse) {
+    option (google.api.http) = {
+      post: "/users/register"
+      body: "*"
+    };
+  }
+
+  // 用户登录
+  rpc LoginUser (LoginRequest) returns (LoginResponse) {
+    option (google.api.http) = {
+      post: "/users/login"
+      body: "*"
+    };
+  }
+
+  // 获取用户个人信息
+  rpc GetUserProfile (GetUserProfileRequest) returns (UserProfileResponse) {
+    option (google.api.http) = {
+      get: "/users/profile"
+    };
+  }
+
+  // 更新用户信息
+  rpc UpdateUserProfile (UpdateUserProfileRequest) returns (UserProfileResponse) {
+    option (google.api.http) = {
+      put: "/users/profile"
+      body: "*"
+    };
+  }
+
+  // 获取用户健康档案
+  rpc GetHealthRecord (GetHealthRecordRequest) returns (HealthRecordResponse) {
+    option (google.api.http) = {
+      get: "/users/health"
+    };
+  }
+
+  // 更新用户健康档案（体质、过敏史等）
+  rpc UpdateHealthRecord (UpdateHealthRecordRequest) returns (HealthRecordResponse) {
+    option (google.api.http) = {
+      put: "/users/health"
+      body: "*"
+    };
+  }
+
+  // 获取用户饮食偏好
+  rpc GetUserPreferences (GetUserPreferencesRequest) returns (UserPreferencesResponse) {
+    option (google.api.http) = {
+      get: "/users/preferences"
+    };
+  }
+
+  // 更新用户饮食偏好
+  rpc UpdateUserPreferences (UpdateUserPreferencesRequest) returns (UserPreferencesResponse) {
+    option (google.api.http) = {
+      put: "/users/preferences"
+      body: "*"
+    };
+  }
+
+  // 退出登录
+  rpc LogoutUser (LogoutRequest) returns (LogoutResponse) {
+    option (google.api.http) = {
+      post: "/users/logout"
+      body: "*"
+    };
+  }
+}
+
+// 用户注册请求
+message RegisterRequest {
+  string username = 1;
+  string password = 2;
+  string email = 3;
+}
+
+// 用户注册响应
+message RegisterResponse {
+  string user_id = 1;
+  string message = 2;
+}
+
+// 用户登录请求
+message LoginRequest {
+  string code = 1;
+  string state = 2;
+}
+
+// 用户登录响应
+message LoginResponse {
+  string token = 1;
+}
+
+// 获取用户个人信息请求
+message GetUserProfileRequest {
+  string user_id = 1;
+}
+
+// 用户个人信息响应
+message UserProfileResponse {
+  string user_id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+// 更新用户信息请求
+message UpdateUserProfileRequest {
+  string user_id = 1;
+  string username = 2;
+  string email = 3;
+}
+
+// 获取用户健康档案请求
+message GetHealthRecordRequest {
+  string user_id = 1;
+}
+
+// 健康档案响应
+message HealthRecordResponse {
+  string user_id = 1;
+  string body_type = 2;
+  string allergies = 3;
+}
+
+// 更新健康档案请求
+message UpdateHealthRecordRequest {
+  string user_id = 1;
+  string body_type = 2;
+  string allergies = 3;
+}
+
+// 获取用户饮食偏好请求
+message GetUserPreferencesRequest {
+  string user_id = 1;
+}
+
+// 用户饮食偏好响应
+message UserPreferencesResponse {
+  string user_id = 1;
+  repeated string preferences = 2;
+}
+
+// 更新用户饮食偏好请求
+message UpdateUserPreferencesRequest {
+  string user_id = 1;
+  repeated string preferences = 2;
+}
+
+// 退出登录请求
+message LogoutRequest {
+  string user_id = 1;
+}
+
+// 退出登录响应
+message LogoutResponse {
+  string message = 1;
+}
