@@ -1,0 +1,7 @@
+casdoor:
+  endpoint: "http://localhost:8000"
+  client_id: "4003c48c69588cb77d75"
+  client_secret: "c953c1cdbf77e0345ca478f628bcd274c427f1bc"
+  certificate: "../api/certs/token_jwt_key.pem"
+  organization: "for_health"
+  application: "recipe-recommender"

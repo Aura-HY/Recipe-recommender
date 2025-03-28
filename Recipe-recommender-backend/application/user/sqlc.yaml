@@ -1,0 +1,13 @@
+version: "2"
+
+sql:
+  - schema: "internal/data/migrate"
+    queries: "internal/data/queries"
+    engine: "mysql"
+    database:
+      uri:
+    gen:
+      go:
+        package: "models"
+        out: "internal/data/models"
+        sql_package: "pgx/v5"

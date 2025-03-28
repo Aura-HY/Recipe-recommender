@@ -1,0 +1,359 @@
+# Generated with protoc-gen-openapi
+# https://github.com/google/gnostic/tree/master/cmd/protoc-gen-openapi
+
+openapi: 3.0.3
+info:
+  title: UserService API
+  version: 0.0.1
+paths:
+  /users/health:
+    get:
+      tags:
+        - UserService
+      description: 获取用户健康档案
+      operationId: UserService_GetHealthRecord
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthRecordResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+    put:
+      tags:
+        - UserService
+      description: 更新用户健康档案（体质、过敏史等）
+      operationId: UserService_UpdateHealthRecord
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateHealthRecordRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthRecordResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+  /users/login:
+    post:
+      tags:
+        - UserService
+      description: 用户登录
+      operationId: UserService_LoginUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+  /users/logout:
+    post:
+      tags:
+        - UserService
+      description: 退出登录
+      operationId: UserService_LogoutUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LogoutRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LogoutResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+  /users/preferences:
+    get:
+      tags:
+        - UserService
+      description: 获取用户饮食偏好
+      operationId: UserService_GetUserPreferences
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserPreferencesResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+    put:
+      tags:
+        - UserService
+      description: 更新用户饮食偏好
+      operationId: UserService_UpdateUserPreferences
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserPreferencesRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserPreferencesResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+  /users/profile:
+    get:
+      tags:
+        - UserService
+      description: 获取用户个人信息
+      operationId: UserService_GetUserProfile
+      parameters:
+        - name: userId
+          in: query
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfileResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+    put:
+      tags:
+        - UserService
+      description: 更新用户信息
+      operationId: UserService_UpdateUserProfile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserProfileRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserProfileResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+  /users/register:
+    post:
+      tags:
+        - UserService
+      description: 用户注册
+      operationId: UserService_RegisterUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterRequest"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RegisterResponse"
+        default:
+          description: Default error response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+components:
+  schemas:
+    GoogleProtobufAny:
+      type: object
+      properties:
+        "@type":
+          type: string
+          description: The type of the serialized message.
+      additionalProperties: true
+      description: Contains an arbitrary serialized message along with a @type that describes the type of the serialized message.
+    HealthRecordResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        bodyType:
+          type: string
+        allergies:
+          type: string
+      description: 健康档案响应
+    LoginRequest:
+      type: object
+      properties:
+        code:
+          type: string
+        state:
+          type: string
+      description: 用户登录请求
+    LoginResponse:
+      type: object
+      properties:
+        token:
+          type: string
+      description: 用户登录响应
+    LogoutRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+      description: 退出登录请求
+    LogoutResponse:
+      type: object
+      properties:
+        message:
+          type: string
+      description: 退出登录响应
+    RegisterRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+        email:
+          type: string
+      description: 用户注册请求
+    RegisterResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        message:
+          type: string
+      description: 用户注册响应
+    Status:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: The status code, which should be an enum value of [google.rpc.Code][google.rpc.Code].
+          format: int32
+        message:
+          type: string
+          description: A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the [google.rpc.Status.details][google.rpc.Status.details] field, or localized by the client.
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/GoogleProtobufAny"
+          description: A list of messages that carry the error details.  There is a common set of message types for APIs to use.
+      description: "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+    UpdateHealthRecordRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+        bodyType:
+          type: string
+        allergies:
+          type: string
+      description: 更新健康档案请求
+    UpdateUserPreferencesRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+        preferences:
+          type: array
+          items:
+            type: string
+      description: 更新用户饮食偏好请求
+    UpdateUserProfileRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+      description: 更新用户信息请求
+    UserPreferencesResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        preferences:
+          type: array
+          items:
+            type: string
+      description: 用户饮食偏好响应
+    UserProfileResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+      description: 用户个人信息响应
+tags:
+  - name: UserService
