@@ -4,7 +4,6 @@
     <div class="header">
       <h1>我的</h1>
     </div>
-
     <!-- 用户信息卡片 -->
     <div class="user-card">
       <div class="avatar">
@@ -19,83 +18,24 @@
       </div>
     </div>
 
-    <!-- 健康指数部分 -->
-    <div class="health-index">
-      <div class="section-title">健康指数</div>
-      <div class="metrics-grid">
-        <!-- 卡路里 -->
-        <div class="metric-card">
-          <div class="metric-icon calories">
-            <i class="icon-fire"></i>
-          </div>
-          <div class="metric-name">卡路里</div>
-          <div class="metric-value">1850</div>
-          <div class="metric-unit">千卡/天</div>
-        </div>
+<!-- 用户信息卡片 -->
+<userInfoCard/>
 
-        <!-- 蛋白质 -->
-        <div class="metric-card">
-          <div class="metric-icon protein">
-            <i class="icon-protein"></i>
-          </div>
-          <div class="metric-name">蛋白质</div>
-          <div class="metric-value">75</div>
-          <div class="metric-unit">克/天</div>
-        </div>
+<!-- 健康指数部分 -->
+<health/>
+<!-- 收藏的食谱 -->
+<recipes/>    
+<!-- 底部导航栏 -->
+<navigation/>
 
-        <!-- 水分 -->
-        <div class="metric-card">
-          <div class="metric-icon water">
-            <i class="icon-water"></i>
-          </div>
-          <div class="metric-name">水分</div>
-          <div class="metric-value">2000</div>
-          <div class="metric-unit">毫升/天</div>
-        </div>
-
-        <!-- 运动 -->
-        <div class="metric-card">
-          <div class="metric-icon exercise">
-            <i class="icon-exercise"></i>
-          </div>
-          <div class="metric-name">运动</div>
-          <div class="metric-value">45</div>
-          <div class="metric-unit">分钟/天</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 收藏的食谱 -->
-    <div class="recipes">
-      <div class="section-header">
-        <div class="section-title">收藏的食谱</div>
-        <div class="view-all">查看全部</div>
-      </div>
-      <div class="recipes-grid">
-        <div class="recipe-card">食谱图片</div>
-        <div class="recipe-card">食谱图片</div>
-      </div>
-    </div>
-
-    <!-- 底部导航栏 -->
-    <div class="bottom-nav">
-      <div class="nav-item">
-        <i class="icon-home"></i>
-        <span>首页</span>
-      </div>
-      <div class="nav-item">
-        <i class="icon-cart"></i>
-        <span>购物车</span>
-      </div>
-      <div class="nav-item active">
-        <i class="icon-profile"></i>
-        <span>我的</span>
-      </div>
-    </div>
-  </div>
+</div> 
 </template>
 
-<script>
+<script setup>
+import userInfoCard from '../components/userInfoCard.vue';
+import health from '../components/health.vue';
+import recipes from '../components/recipes.vue';
+import navigation from '../components/navigation.vue';
 import * as CasdoorSDK from "casdoor-vue-sdk";
 import backend from "../backend/casdoorBackend";
 import { getMyProfileUrl } from "casdoor-vue-sdk";
@@ -132,11 +72,16 @@ export default {
     });
   },
 };
-
-// 这里可以添加组件逻辑
 </script>
 
+
 <style scoped>
+/* 您的样式 */
+</style>
+
+<style scoped>
+
+
 .profile-page {
   font-family: "PingFang SC", "Helvetica Neue", Arial, sans-serif;
   background-color: #f5f5f5;
@@ -246,19 +191,22 @@ export default {
 
 .metric-icon {
   position: absolute;
-  top: 15px;
-  left: 15px;
+  top: 10px;
+  left: 0px;
 }
 
 .metric-name {
-  font-size: 14px;
+
+  margin-top: 15px;
+  font-size: 20px;
   color: #666;
-  margin-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .metric-value {
-  font-size: 24px;
-  color: #8b4513;
+  margin-top: 12px;
+  font-size: 22px;
+  color: #8B4513;
   font-weight: bold;
 }
 
